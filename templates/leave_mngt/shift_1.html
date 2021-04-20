@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <h1>Hello</h1>
+</div>
+<div class="row">
+    <div class="col s12 m2">
+        <table border="2" cellspacing="0">
+            <tr>
+                <th>Location</th>
+                <th>Application</th>
+                <th>Resource Analyst</th>
+                {% for d in day %}<th>{{d|date:"d-b"}}</th>
+                {% endfor %}
+            </tr>
+            {% for r in resource %}
+            {% for a in application %}
+            {% for l in location %}
+            <tr>
+                {% if r == a.Resource_Analyst and r == l.Resource_Analyst %}
+                    <td>{{l.location}}</td>
+                    <td>{{a.application}}</td>
+                    <td>{{r}}</td>
+                {% endif %}
+                {% for d in day %}
+                {% for i in obj %}
+                    {% if d.day == i.shift_date.day and i.Resource_Analyst == r and a.Resource_Analyst == i.Resource_Analyst and l.Resource_Analyst == i.Resource_Analyst %}
+                        <td>{{i.shift}}</td>
+                    {% endif %}
+                {% endfor %}
+                {% endfor %}
+            </tr>
+            {% endfor %}
+            {% endfor %}
+            {% endfor %}
+        </table>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Signup Page</h1>
+    <div class="row">
+        <div class="col-sm-4">
+            <form method="post">
+                {% csrf_token %}
+                <input type="text" name="username" placeholder="Username"><br>
+                <input type="text" name="first_name" placeholder="First Name"><br>
+                <input type="email", name="email" placeholder="Email"><br>
+                <input type="password", name="password1" placeholder="Password"><br>
+                <input type="password", name="password2" placeholder="Confirm Password"><br>
+                <button class="btn btn-success" type="submit" name="action">Submit
+    			<i class="material-icons right">send</i>
+  				</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            {% for message in messages %}
+            <h1>{{message}}</h1>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

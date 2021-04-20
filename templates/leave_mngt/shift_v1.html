@@ -1,0 +1,52 @@
+{% load custom_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <h1>Hello</h1>
+</div>
+<div class="row">
+    <div class="col s12 m2">
+        <table border="2" cellspacing="0">
+            <tr>
+                <th>Location</th>
+                <th>Application</th>
+                <th>Resource Analyst</th>
+                {% for d in day %}<th>{{d}}</th>
+                {% endfor %}
+            </tr>
+            {% for i in df %}
+            <tr>
+                <td>{{i.location}}</td>
+                <td>{{i.application}}</td>
+                <td>{{i.Resource_Analyst}}</td>
+                {% for k in i %}
+                {% if forloop.counter > 4 %}
+                {% if i|hash:k == 'EM'%}
+                <td style="background-color:yellow">{{i|hash:k}}</td>
+                {% elif i|hash:k == 'M' %}
+                <td style="background-color:green">{{i|hash:k}}</td>
+                {% else %}
+                <td>{{i|hash:k}}</td>
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+<!--                {% for d in day1 %}<td>{{i.d}}hi</td>{% endfor %}-->
+<!--                <td>{{i.1609459200000}}</td>-->
+<!--                <td>{{i.1609718400000}}</td>-->
+<!--                <td>{{i.1609804800000}}</td>-->
+<!--                <td>{{i.1609891200000}}</td>-->
+<!--                <td>{{i.1609977600000}}</td>-->
+<!--                <td>{{i.1610064000000}}</td>-->
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+</body>
+</html>
